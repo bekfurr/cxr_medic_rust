@@ -1,0 +1,48 @@
+[package]
+name = "cxr_medic_rust"
+version = "1.0.0"
+edition = "2021"
+authors = ["BMI Team"]
+description = "BMI CXR-AI v2 - Clinical Decision Support System (Rust Desktop & Android Clone)"
+
+[lib]
+name = "cxr_medic_lib"
+crate-type = ["cdylib", "rlib"]
+path = "src/lib.rs"
+
+[[bin]]
+name = "cxr_medic_rust"
+path = "src/main.rs"
+
+[dependencies]
+eframe = { version = "0.30", default-features = false, features = [
+    "default",
+    "glow",
+] }
+egui = "0.30"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+base64 = "0.22"
+ureq = { version = "2.10", default-features = false, features = ["json", "tls"] }
+log = "0.4"
+rfd = "0.15"
+
+[target.'cfg(target_os = "android")'.dependencies]
+android_logger = "0.14"
+android-activity = { version = "0.6", features = ["game-activity"] }
+
+[package.metadata.android]
+package = "com.bmi.cxr_medic"
+apk_name = "BmiCxrMedic"
+label = "BMI CXR-AI v2"
+version_code = 1
+version_name = "1.0.0"
+min_sdk_version = 21
+target_sdk_version = 34
+icon = "assets/icons/app_icon.png"
+build_targets = ["aarch64-linux-android", "armv7-linux-androideabi", "x86_64-linux-android"]
+
+[[package.metadata.android.uses_permission]]
+name = "android.permission.INTERNET"
+

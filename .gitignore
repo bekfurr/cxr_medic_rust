@@ -1,0 +1,16 @@
+# Rust Cargo build output
+target/
+installer/Output/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+
+# Operating System & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.log
+
